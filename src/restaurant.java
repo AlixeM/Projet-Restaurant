@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class restaurant {
+public class Restaurant {
     List<Employe> employes;
     //... autres attributs et méthodes 
 
