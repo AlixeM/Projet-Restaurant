@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Restaurant {
     List<Employe> employes;
-    //... autres attributs et méthodes
+    //... autres attributs et méthodes 
 
     public void ajouterEmploye(Employe employe) {
         //... ajoutez le nouvel employé à la liste des employés
