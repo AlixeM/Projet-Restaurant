@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Serveur extends Employe {
     double prix;
-    List<List<Boisson>> boissonCommandes;
+    List<Boisson> boissonCommandes;
     //... autres attributs et méthodes
 
     public void ajouterBoisson(List<Boisson> boissons) {
