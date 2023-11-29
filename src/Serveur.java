@@ -1,11 +1,16 @@
 import java.util.*;
 
 public class Serveur extends Employe {
-    double prix;
-    List<Boisson> boissonCommandes;
-    //... autres attributs et méthodes
+	int soirDeSuite;
+	Table table;
 
-    public void ajouterBoisson(List<Boisson> boissons) {
-        //... ajoutez la nouvelle commande de boisson à la liste des commandes
-    }
+	public Ingredient verifDispoPlats() {
+		//retourne les plats dispos après analyse du stock
+	}
+	public Boisson verifDispoBoisson() {
+		//retourne les boissons dispos après analyse du stock
+	}
+	public Transaction creerTransaction() {
+		//retourne la transaction associée à la table
+	}
 }
