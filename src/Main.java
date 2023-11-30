@@ -4,31 +4,43 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Créez un nouveau restaurant et des employés
-        Restaurant restaurant = new Restaurant();
-        Cuisinier cuisinier = new Cuisinier();
-        Serveur serveur = new Serveur();
-        Manager manager = new Manager();
+        // Affichage des écrans
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Quel écran souhaitez-vous afficher?");
+        System.out.println("1- Ecran prise de commande");
+        System.out.println("2- Ecran cuisine");
+        System.out.println("3- Ecran bar");
+        System.out.println("4- Ecran Monitoring");
+        int choixEcran = scanner.nextInt();
+        System.out.println("Vous avez choisi l'écran: " + choixEcran);
 
-        // Ajoutez des employés au restaurant
-        restaurant.ajouterEmploye(cuisinier);
-        restaurant.ajouterEmploye(serveur);
-        restaurant.ajouterEmploye(manager);
+        // En fonction du choix d'écran
+        switch (choixEcran) {
+            case 1:
+                // Ecran Serveur
+                // Ajoutez des commandes de plats et de boissons
+                Serveur.ajouterCommande(Commande);
+                
+                break;
 
-        // Ouvrez le restaurant
-        restaurant.ouvrir();
+            case 2:
+                // Ecran cuisine
+                // Logique spécifique à l'écran cuisine
+                break;
 
-        // Ajoutez des commandes de plats et de boissons
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-        ArrayList<Boisson> boissons = new ArrayList<>();
-        cuisinier.ajouterCommande(ingredients);
-        serveur.ajouterBoisson(boissons);
+            case 3:
+                // Ecran bar
+                // Logique spécifique à l'écran bar
+                break;
 
-        // Vérifiez la disponibilité des ingrédients et des boissons
-        manager.verifDispo(ingredients, boissons);
+            case 4:
+                // Ecran Monitoring
+                // Logique spécifique à l'écran Monitoring
+                break;
 
-        // Créez une transaction
-        Transaction transaction = manager.creerTransaction();
+            default:
+                System.out.println("Choix d'écran invalide");
+        }
 
         // Fermez le restaurant
         restaurant.fermer();
