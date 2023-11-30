@@ -4,7 +4,7 @@ public class Serveur extends Employe {
 	int soirDeSuite;
 	Table table;
 
-	public Ingredient verifDispoPlats() {
+	public Plat verifDispoPlats() {
 		//retourne les plats dispos après analyse du stock
 	}
 	public Boisson verifDispoBoisson() {
