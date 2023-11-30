@@ -1,6 +1,20 @@
 import java.util.List;
 
 public class Restaurant {
+	 // Créez un nouveau restaurant et des employés
+    Restaurant restaurant = new Restaurant();
+    Cuisinier cuisinier = new Cuisinier();
+    Serveur serveur = new Serveur();
+    Manager manager = new Manager();
+
+    // Ajoutez des employés au restaurant
+    restaurant.ajouterEmploye(cuisinier);
+    restaurant.ajouterEmploye(serveur);
+    restaurant.ajouterEmploye(manager);
+
+    // Ouvrez le restaurant
+    restaurant.ouvrir();
+	
     List<Employe> employes;
     //... autres attributs et méthodes 
 

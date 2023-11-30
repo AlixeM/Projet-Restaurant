@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+    	
         // Affichage des écrans
         Scanner scanner = new Scanner(System.in);
         System.out.println("Quel écran souhaitez-vous afficher?");
@@ -19,7 +20,7 @@ public class Main {
             case 1:
                 // Ecran Serveur
                 // Ajoutez des commandes de plats et de boissons
-                Serveur.ajouterCommande(Commande);
+                Serveur.commander();
                 
                 break;
 
