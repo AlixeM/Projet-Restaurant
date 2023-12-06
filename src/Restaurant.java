@@ -6,6 +6,7 @@ public class Restaurant {
     Cuisinier cuisinier = new Cuisinier();
     Serveur serveur = new Serveur();
     Manager manager = new Manager();
+    List<Employe> employes;
 
     // Ajoutez des employés au restaurant
     restaurant.ajouterEmploye(cuisinier);
@@ -15,7 +16,6 @@ public class Restaurant {
     // Ouvrez le restaurant
     restaurant.ouvrir();
 	
-    List<Employe> employes;
     //... autres attributs et méthodes 
 
     public void ajouterEmploye(Employe employe) {

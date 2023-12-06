@@ -2,7 +2,7 @@ import java.util.List;
 
 public class Barman {
 	int soirDeSuite;
-	List<Boisson> boissonCommandes;
+	List<Plat> boissonCommandes;
 	public void ready() {
 
 	}
