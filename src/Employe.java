@@ -2,10 +2,12 @@ public class Employe {
     String nom;
     String prenom;
     double salaire;
-    //... autres attributs et méthodes
+    int soirDeSuite;
     
-    public void nettoyerRestaurant() {
-    	System.out.println("Le restaurant a bien été nettoyé, t'as fait du bon travail chakal");
-    }
-    
+    public Employe(String nom, String prenom, double salaire, int soirDeSuite) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.salaire = salaire;
+        this.soirDeSuite = soirDeSuite;    
+        }
 }
