@@ -6,7 +6,7 @@ public class Barman extends Employe {
 	
 	public Barman(String nom, String prenom, double salaire, int soirDeSuite) {
         super(nom,prenom,salaire,soirDeSuite);   
-        }
+    }
 	
 	public void ready() {
 
