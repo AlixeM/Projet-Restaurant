@@ -5,21 +5,19 @@ public class Transaction {
 	Table table;
 	double prix;
 	List <Plat> plats;
-	List <Boisson> boissons;
 	
 	public void ajouterPlat(Plat plat) {
-		
-	}
-	public void ajouterBoisson(Boisson boisson) {
-		
+		plats.add(plat);
 	}
 	public void retirerPlat (Plat plat) {
-		
+		plats.remove(plat);
 	}
-	public void retirerBoisson(Boisson boisson) {
-		
-	}
-	public void calculerPrix(List <Plat> plats, List <Boisson> boisson) {
-		
+
+	public void calculerPrix(List <Plat> plats) {
+		int total = 0;
+		for (Plat plat : plats) {
+			total += plat.prix;
+		}
+		this.prix=total;
 	}
 }

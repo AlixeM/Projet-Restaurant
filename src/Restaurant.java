@@ -32,6 +32,25 @@ public class Restaurant {
                 pizzaPepperoni, limonade, cidre, biere, jus, eau
             );
         
+        Cuisinier cuisinier = new Cuisinier ("Michel", "Francis", 2000, 0);
+        Cuisinier cuisinier2 = new Cuisinier ("Michel", "Francis", 2000, 0);
+        Cuisinier cuisinier3 = new Cuisinier ("Michel", "Francis", 2000, 0);
+        Cuisinier cuisinier4 = new Cuisinier ("Michel", "Francis", 2000, 0);
+        Cuisinier cuisinier5 = new Cuisinier ("blabla", "truc", 2000, 5);
+        Cuisinier cuisinier6 = new Cuisinier ("zozozoz", "hahahaha", 2000, 0);
+        Manager manager = new Manager ("Truc", "Bidule", 5000,0);
+        Barman barman = new Barman ("Robert", "Jean", 2000,0);
+        Barman barman2 = new Barman ("Pierre", "Jean", 2000,0);
+        ajouterEmploye(cuisinier);
+        ajouterEmploye(cuisinier2);
+        ajouterEmploye(cuisinier3);
+        ajouterEmploye(cuisinier4);
+        ajouterEmploye(cuisinier5);
+        ajouterEmploye(cuisinier6);
+        ajouterEmploye(manager);
+        ajouterEmploye(barman);
+        ajouterEmploye(barman2);
+        travailleurs=manager.gererEquipe(employes);
         
         // Ouverture du restaurant
         ouvrir();
@@ -44,22 +63,24 @@ public class Restaurant {
     //... autres attributs et méthodes 
 
     public void ajouterEmploye(Employe employe) {
-        //... ajoutez le nouvel employé à la liste des employés
+        employes.add(employe);
     }
 
     public void supprimerEmploye(Employe employe) {
-        //... supprimez l'employé de la liste des employés
+        employes.remove(employe);
     }
 
     public void ouvrir() {
+    	if (travailleurs.isEmpty()) {
+    		System.out.println("Equipe pas assez nombreuse pour ouvrir");
+    		return;
+    	}
     	this.ouverture=true;
     	System.out.println("Encore une belle journée qui commence !");
-        //... affichez un message pour indiquer que le restaurant est ouvert
     }
 
     public void fermer() {
     	this.ouverture=false;
     	System.out.println("Ciao li pepperoni e la spaghetti mamaaaaaaa");
-        //... affichez un message pour indiquer que le restaurant est fermé
     }
 }
