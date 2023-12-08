@@ -4,7 +4,7 @@ public class Manager extends Employe {
 	
 	public Manager(String nom, String prenom, double salaire, int soirDeSuite) {
         super(nom,prenom,salaire,soirDeSuite);   
-        }
+    }
 	
 	public List<Employe> gererEquipe(List<Employe> employes) {
         List<Employe> equipeGeree = new ArrayList<>();
@@ -36,5 +36,22 @@ public class Manager extends Employe {
         }
         
         return equipeGeree;
+    }
+	
+	public Map<Ingredients, Integer> listeDesCourses(Map<Ingredients, Integer> stock) {
+        Map<Ingredients, Integer> listeDesCourses = new HashMap<>();
+
+        for (Map.Entry<Ingredients, Integer> entry : stock.entrySet()) {
+            Ingredients ingredient = entry.getKey();
+            int quantiteActuelle = entry.getValue();
+
+            // Si la quantité actuelle est inférieure à 10, calculer la quantité à acheter
+            if (quantiteActuelle < 10) {
+                int quantiteAcheter = 10 - quantiteActuelle;
+                listeDesCourses.put(ingredient, quantiteAcheter);
+            }
+        }
+
+        return listeDesCourses;
     }
 }
