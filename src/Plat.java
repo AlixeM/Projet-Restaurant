@@ -3,11 +3,15 @@ import java.util.*;
 public class Plat {
 	double prix;
 	String nom;
-	List <Ingredients> Ingredients; 
+	List <Ingredients> ingredients; 
 	
 	public Plat(double prix, String nom, List <Ingredients> ingredients) {
 		this.prix=prix;
 		this.nom=nom;
-		this.Ingredients=ingredients;
+		this.ingredients=ingredients;
+	}
+	
+	public List <Ingredients> getIngredients(){
+		return ingredients;
 	}
 }
