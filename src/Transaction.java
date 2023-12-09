@@ -38,10 +38,11 @@ public class Transaction {
 		this.prix=total;
 	}
 	
-	public int payer(Table table, int prix) {
+	public List<Integer> payer(Table table, int prix) {
 		
 		int prixPaye=0;
 		int personnesAyantPaye=1;
+		List<Integer> paiements = new ArrayList<>();
 		
 		while(prixPaye<prix || personnesAyantPaye<table.nbPersonnes) {
 			Scanner scanner = new Scanner(System.in);
@@ -55,6 +56,7 @@ public class Transaction {
 				prixRestant=-paye;
 				prixPaye=+paye;
 				personnesAyantPaye++;
+				paiements.add(paye);
 			}
 			else{
 				System.out.println("Il y a une erreur avec le montant. Veuillez réessayer.");
@@ -67,11 +69,12 @@ public class Transaction {
 				prixRestant=-paye;
 				prixPaye=+paye;
 				personnesAyantPaye++;
+				paiements.add(paye);
 			}
 			scanner.close();
 		}
 		
-		return personnesAyantPaye;
+		return paiements;
 	}
 	
 }
