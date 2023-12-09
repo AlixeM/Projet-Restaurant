@@ -83,4 +83,10 @@ public class Restaurant {
     	this.ouverture=false;
     	System.out.println("Ciao li pepperoni e la spaghetti mamaaaaaaa");
     }
+    
+    public void nettoyer() throws InterruptedException {
+        System.out.println("Nettoyage en cours...");
+        Thread.sleep(5000);// Attendre 5 secondes
+        System.out.println("Restaurant nettoyé");
+    }
 }
