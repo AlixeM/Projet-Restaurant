@@ -6,11 +6,6 @@ public class Main {
 
         Restaurant restaurant = new Restaurant(); // Initialisation du restaurant
 
-        restaurant.ajouterEmploye(); // Print liste d'employés choisis (attention soir dispo)
-
-        // Etat des stocks (jsp quelle fonction appeler
-        //Stock 
-
         restaurant.ouvrir();// Ouvre le restaurant
 
         // Transaction jusqu'à fermeture
