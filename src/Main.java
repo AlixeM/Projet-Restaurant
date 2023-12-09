@@ -4,24 +4,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Initialisation du restaurant
-        Restaurant restaurant = new Restaurant();
+        Restaurant restaurant = new Restaurant(); // Initialisation du restaurant
 
-        // On check la liste d'employés (soir dispo attention) et print la liste des employés choisis
-        //restaurant.ajouterEmploye();
+        restaurant.ajouterEmploye(); // Print liste d'employés choisis (attention soir dispo)
 
-        // Faire les stocks
-        Stock stock = new Stock();
+        // Etat des stocks (jsp quelle fonction appeler
+        //Stock 
 
-        // Ouvre le restaurant (print "Bonjour ! Le restaurant est ouvert")
-        restaurant.ouvrir();
+        restaurant.ouvrir();// Ouvre le restaurant
 
-        // Boucle pour afficher les écrans jusqu'à ce que le restaurant soit fermé
+        // Transaction jusqu'à fermeture
         boolean restaurantOuvert = true;
         while (restaurantOuvert) {
             // Affichage des écrans
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Quel écran souhaitez-vous afficher?");
+            System.out.println("Que souhaitez vous faire ?");
             System.out.println("1- Ecran prise de commande");
             System.out.println("2- Ecran cuisine");
             System.out.println("3- Ecran bar");
@@ -34,23 +31,21 @@ public class Main {
             switch (choixEcran) {
                 case 1:
                     // Ecran Serveur
-                    // Ajoutez des commandes de plats et de boissons
-                    //Serveur.commander();
+                    Serveur.commander();
                     break;
 
                 case 2:
                     // Ecran cuisine
-                    // Logique spécifique à l'écran cuisine
+                    Cuisinier.cuisiner();
                     break;
 
                 case 3:
                     // Ecran bar
-                    // Logique spécifique à l'écran bar
+                    Barman.boisson();
                     break;
 
                 case 4:
-                    // Ecran Monitoring
-                    // Logique spécifique à l'écran Monitoring
+                    // Ecran Manager
                     Scanner scanner2 = new Scanner(System.in);
                     System.out.println("Que souhaitez-vous faire ?");
                     System.out.println("1- Liste des Employés de la journée");
@@ -63,19 +58,17 @@ public class Main {
 
                     switch (choixEcranManager) {
                         case 1:
-                            // Manager.gererEquipe(List<Employe> employes);
-                            // afficher la liste des employés de la journée
+                            Manager.gererEquipe(List<Employe> employes);// afficher la liste des employés de la journée
                             break;
                         case 2:
-                            // Manager.listeDesCourses(Map<Ingredients, Integer> stock);
-                            // afficher la liste des courses à la fin de la journée
+                            Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses à la fin de la journée
                             break;
                         case 3:
-                            // Manager.performancesJournee();
-                            // afficher le nombre de commandes et l'argent gagné de la journée
+                            Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
                             break;
                         case 4:
                             // Afficher la liste des stocks;
+                        	// JSP quoi mettre
                             break;
                         case 5:
                             // Retour aux écrans principaux
@@ -87,18 +80,15 @@ public class Main {
                     break;
 
                 case 5:
-                    // Quand on choisit de fermer le restaurant
-                    restaurant.fermer();
+                    restaurant.nettoyer(); //Nettoyage
+                    
+                    // Faire les courses mais JSP quelle fonction j'appelle
+                    stock.effectuerCourses();
 
-                    // Nettoyer (fonction qui print "nettoyage en cours" attend 5s puis print "restaurant nettoyé")
-                    restaurant.nettoyer();
-
-                    // Courses (appel d'une fonction dans la classe stock)
-                    //stock.effectuerCourses();
-
-                    // Fin du programme
-                    restaurantOuvert = false; // Sortir de la boucle
+                    restaurant.fermer(); //Fermeture
+                    restaurantOuvert = false;
                     break;
+                    
 
                 default:
                     System.out.println("Choix d'écran invalide");

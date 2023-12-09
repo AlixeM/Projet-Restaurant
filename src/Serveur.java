@@ -36,46 +36,46 @@ public class Serveur extends Employe {
             System.out.println("2- Salade");
         }
         if (verifDispo("Soupe Oignon")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Soupe Oignon");
         }
         if (verifDispo("Soupe Tomate")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Soupe Tomate");
         }
         if (verifDispo("Soupe Champignon")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Soupe Champignon");
         }
         if (verifDispo("Burger Complet")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Burger Complet");
         }
         if (verifDispo("Burger Mid")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Burger Mid");
         }
         if (verifDispo("Burger Classique")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Burger Classique");
         }
         if (verifDispo("Pizza")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Pizza");
         }
         if (verifDispo("Pizza Champignon")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Pizza Champignon");
         }
         if (verifDispo("Pizza Pepperoni")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Pizza Pepperoni");
         }
         if (verifDispo("Limonade")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Limonade");
         }
         if (verifDispo("Cidre Doux")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Cidre Doux");
         }
         if (verifDispo("Bière sans alcool")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Bière sans alcool");
         }
         if (verifDispo("Jus de fruit")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Jus de fruit");
         }
         if (verifDispo("Eau")) {
-            System.out.println("1- Salade Deluxe");
+            System.out.println("1- Eau");
         }
         
         System.out.println("-------------");
