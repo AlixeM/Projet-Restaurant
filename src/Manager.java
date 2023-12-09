@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Manager extends Employe {
 	
+	List <Transaction> recetteDuJour;
+	
 	public Manager(String nom, String prenom, double salaire, int soirDeSuite) {
         super(nom,prenom,salaire,soirDeSuite);   
     }
