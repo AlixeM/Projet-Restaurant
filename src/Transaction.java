@@ -37,4 +37,41 @@ public class Transaction {
 		}
 		this.prix=total;
 	}
+	
+	public int payer(Table table, int prix) {
+		
+		int prixPaye=0;
+		int personnesAyantPaye=1;
+		
+		while(prixPaye<prix || personnesAyantPaye<table.nbPersonnes) {
+			Scanner scanner = new Scanner(System.in);
+			int prixRestant=prix-prixPaye;
+			System.out.println("Table n° "+ table.numero + "Prix restant à payer : " + prixRestant);
+			System.out.println("Client n° " +personnesAyantPaye +", combien voulez-vous payer ?");
+			int paye = scanner.nextInt();
+			
+			if (paye<=prixRestant && paye>=0) {
+				System.out.println("Vous avez bien payé "+paye+" euros.");
+				prixRestant=-paye;
+				prixPaye=+paye;
+				personnesAyantPaye++;
+			}
+			else{
+				System.out.println("Il y a une erreur avec le montant. Veuillez réessayer.");
+			}
+			
+			if(prixPaye<prix || personnesAyantPaye==table.nbPersonnes) {
+				System.out.println("Table n° "+ table.numero +"Client n° " +personnesAyantPaye +", il vous reste "+ prixRestant+ "euros à payer.");
+				paye=prixRestant;
+				System.out.println("Vous avez bien payé "+paye+" euros.");
+				prixRestant=-paye;
+				prixPaye=+paye;
+				personnesAyantPaye++;
+			}
+			scanner.close();
+		}
+		
+		return personnesAyantPaye;
+	}
+	
 }
