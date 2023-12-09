@@ -13,32 +13,31 @@ public class Manager extends Employe {
 
         int cuisinierCount = 0;
         int barmanCount = 0;
+        int serveurCount = 0;
 
-        // Parcourir la liste d'employés et sélectionner les cuisiniers et le barman en vérifiant soirDeSuite
+        // Parcourir la liste d'employés et sélectionner les cuisiniers, le barman et les serveurs en vérifiant soirDeSuite
         for (Employe employe : employes) {
-            if ((employe instanceof Cuisinier || employe instanceof Barman)
-                    && employe.soirDeSuite < 2
-                    && cuisinierCount < 4
-                    && barmanCount < 1) {
+            if (employe instanceof Cuisinier && employe.soirDeSuite < 2 && cuisinierCount < 4) {
                 equipeGeree.add(employe);
-                if (employe instanceof Cuisinier) {
-                    cuisinierCount++;
-                } else if (employe instanceof Barman) {
-                    barmanCount++;
-                }
+                cuisinierCount++;
+            } else if (employe instanceof Barman && employe.soirDeSuite < 2 && barmanCount < 1) {
+                equipeGeree.add(employe);
+                barmanCount++;
+            }  else if (employe instanceof Serveur && employe.soirDeSuite < 2 && serveurCount < 1) {
+                equipeGeree.add(employe);
+                serveurCount++;
             }
         }
 
         // Ajouter le manager à l'équipe
         equipeGeree.add(this);
         
-        if (cuisinierCount < 4 || barmanCount < 1) {
+        if (cuisinierCount < 4 || barmanCount < 1 || serveurCount < 2) {
             System.out.println("L'équipe est incomplète, le restaurant ne peut pas ouvrir.");
             equipeGeree.clear(); // Réinitialiser la liste si l'équipe est incomplète
         }
-        
         return equipeGeree;
-    }
+	}
 	
 	public Map<Ingredients, Integer> listeDesCourses(Map<Ingredients, Integer> stock) {
         Map<Ingredients, Integer> listeDesCourses = new HashMap<>();
