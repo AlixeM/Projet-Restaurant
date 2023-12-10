@@ -61,15 +61,15 @@ public class Main {
                     	while (!tableTerminee) {
                         	//affichage du menu
                         	List <Plat> platsDispos = stock.verifDispoMenu(menuDuJour.menu);
-                        	serveurChef.afficherPlatsDisponibles(platsDispos);
                         	
                         	// demande de commande au client
-                            System.out.println("Voulez-vous ajouter un plat ? (Oui/Non)");
+                            System.out.println("Voulez-vous ajouter un plat ou une boisson ? (Oui/Non)");
                             Scanner scannerPlat = new Scanner(System.in);
                             String reponse = scannerPlat.next();
 
                             if (reponse.equalsIgnoreCase("Oui")) {
                                 // Demander au client de choisir un plat
+                            	serveurChef.afficherPlatsDisponibles(platsDispos);
                             	Scanner scanner1 = new Scanner(System.in);
                                 System.out.println("Quel plat souhaitez-vous ?");
                                 int choixEcranServeur = scanner1.nextInt();
@@ -102,7 +102,8 @@ public class Main {
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
                     if (!cuisinierChef.enPrepa && cuisinierChef.platCommandes.isEmpty() && !barmanChef.enPrepa && barmanChef.boissonCommandes.isEmpty()) {
                     		System.out.println("Voici votre commande !");
-                    		//mettre un temps d'attente si alixe y arrive
+                    		//mettre un temps d'attente si alixe y arrive --> Ask and you shall reicive
+                    		Thread.sleep(10000);// Attendre 10 secondes
                     		System.out.println("Avez-vous fini ? Oui/Non");
                         	Scanner scannerCommande= new Scanner (System.in);
                   			 String reponse = scannerCommande.next();                  			 
@@ -158,6 +159,7 @@ public class Main {
                                 }
                                 else if (reponse.equalsIgnoreCase("Non")) {
                                 	System.out.println("Pas de souci, quand tu veux chef");
+                                	retour=true;
                                 }
                                 else {
                                     System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
