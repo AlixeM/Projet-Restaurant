@@ -98,10 +98,6 @@ public class Main {
                                 System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
                             }
                     	}
-                    	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
-                        if (cuisinierChef.enPrepa==false && cuisinierChef.platCommandes.isEmpty() && barmanChef.enPrepa==false && barmanChef.boissonCommandes.isEmpty()) {
-                        	System.out.println("Voici vos repas ! Puis-je");
-                        }
                 	}
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
                     if (!cuisinierChef.enPrepa && cuisinierChef.platCommandes.isEmpty() && !barmanChef.enPrepa && barmanChef.boissonCommandes.isEmpty()) {

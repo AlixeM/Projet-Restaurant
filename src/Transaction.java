@@ -52,25 +52,25 @@ public class Transaction {
 		List<Integer> paiements = new ArrayList<>();
 		int paye=0;
 		int prixRestant=prix-prixPaye;
-		while(prixPaye<prix || personnesAyantPaye<table.nbPersonnes) {
-			if(prixPaye<prix && personnesAyantPaye==table.nbPersonnes) {
-				System.out.println("Table n° "+ table.numero +" Client n° " +personnesAyantPaye +", il vous reste "+ prixRestant+ "euros à payer.");
-				paye=prixRestant;
-				System.out.println("Vous avez bien payé "+paye+" euros.");
-				prixRestant-=paye;
-				prixPaye+=paye;
-				personnesAyantPaye++;
-				paiements.add(paye);
-			}
-			else {
+		boolean paiementCorrect = true;
+		while(prixPaye<prix && personnesAyantPaye<table.nbPersonnes) {
 				Scanner scanner = new Scanner(System.in);
 				prixRestant=prix-prixPaye;
-				System.out.println("Table n° "+ table.numero + " Prix restant à payer : " + prixRestant);
-				System.out.println(" Client n° " +personnesAyantPaye +", combien voulez-vous payer ?");
-				paye = scanner.nextInt();
-				
+				try {
+					System.out.println("Table n° "+ table.numero + " Prix restant à payer : " + prixRestant);
+					System.out.println(" Client n° " +personnesAyantPaye +", combien voulez-vous payer ? (nombre entier) ");
+					paye = scanner.nextInt();
+				}catch(InputMismatchException e) {
+		            System.out.println("Erreur : Vous devez entrer un entier.");
+		            paye = 0;
+		            personnesAyantPaye--;
+		            paiementCorrect=false;
+		        }
 				if (paye<=prixRestant && paye>=0) {
-					System.out.println("Vous avez bien payé "+paye+" euros.");
+					if (paiementCorrect) {
+						System.out.println("Vous avez bien payé "+paye+" euros.");
+					}
+					paiementCorrect=true;
 					prixRestant-=paye;
 					prixPaye+=paye;
 					personnesAyantPaye++;
@@ -80,8 +80,15 @@ public class Transaction {
 					System.out.println("Il y a une erreur avec le montant. Veuillez réessayer.");
 				}
 			}
-			
-			}
+			if(prixPaye<prix && personnesAyantPaye==table.nbPersonnes) {
+				System.out.println("Table n° "+ table.numero +" Client n° " +personnesAyantPaye +", il vous reste "+ prixRestant+ "euros à payer.");
+				paye=prixRestant;
+				System.out.println("Vous avez bien payé "+paye+" euros.");
+				prixRestant-=paye;
+				prixPaye+=paye;
+				personnesAyantPaye++;
+				paiements.add(paye);
+		}
 		return paiements;
 	}
 	
