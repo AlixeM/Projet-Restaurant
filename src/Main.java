@@ -61,15 +61,15 @@ public class Main {
                     	while (!tableTerminee) {
                         	//affichage du menu
                         	List <Plat> platsDispos = stock.verifDispoMenu(menuDuJour.menu);
-                        	serveurChef.afficherPlatsDisponibles(platsDispos);
                         	
                         	// demande de commande au client
-                            System.out.println("Voulez-vous ajouter un plat ? (Oui/Non)");
+                            System.out.println("Voulez-vous ajouter un plat ou une boisson ? (Oui/Non)");
                             Scanner scannerPlat = new Scanner(System.in);
                             String reponse = scannerPlat.next();
 
                             if (reponse.equalsIgnoreCase("Oui")) {
                                 // Demander au client de choisir un plat
+                            	serveurChef.afficherPlatsDisponibles(platsDispos);
                             	Scanner scanner1 = new Scanner(System.in);
                                 System.out.println("Quel plat souhaitez-vous ?");
                                 int choixEcranServeur = scanner1.nextInt();
@@ -163,6 +163,7 @@ public class Main {
                                 }
                                 else if (reponse.equalsIgnoreCase("Non")) {
                                 	System.out.println("Pas de souci, quand tu veux chef");
+                                	retour=true;
                                 }
                                 else {
                                     System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
