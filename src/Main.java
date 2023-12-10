@@ -106,7 +106,8 @@ public class Main {
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
                     if (!cuisinierChef.enPrepa && cuisinierChef.platCommandes.isEmpty() && !barmanChef.enPrepa && barmanChef.boissonCommandes.isEmpty()) {
                     		System.out.println("Voici votre commande !");
-                    		//mettre un temps d'attente si alixe y arrive
+                    		//mettre un temps d'attente si alixe y arrive --> Ask and you shall reicive
+                    		Thread.sleep(10000);// Attendre 10 secondes
                     		System.out.println("Avez-vous fini ? Oui/Non");
                         	Scanner scannerCommande= new Scanner (System.in);
                   			 String reponse = scannerCommande.next();                  			 
