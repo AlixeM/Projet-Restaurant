@@ -310,6 +310,7 @@ public class Main {
 		            default:
 		                System.out.println("Choix d'écran invalide");
 		        }
+            	break;
             }
         }
     }
