@@ -1,0 +1,5 @@
+Transaction #1 - Prix : 0
+Plats achetés : [Vodka Framboise, Pizza Pepperoni]
+
+Total prix de la journée : 0
+Total plats achetés dans la journée : 2

@@ -17,7 +17,7 @@ public class Restaurant {
         Barman barman = new Barman ("Moldu", "Hubert", 2000,0);
         Barman barman2 = new Barman ("Firatu", "Pricilla", 2000,0);
         Serveur serveur = new Serveur ("Miratru", "Olivia", 2000,0);
-        Serveur serveur2 = new Serveur ("Rantis", "Freddy", 0,0);
+        Serveur serveur2 = new Serveur ("Rantis", "Freddy", 2000,0);
         Serveur serveur3 = new Serveur ("Danlta", "Alphonse", 2000,0);
         Serveur serveur4 = new Serveur ("Kilo", "Cendy", 2000,0);
         ajouterEmploye(cuisinier);

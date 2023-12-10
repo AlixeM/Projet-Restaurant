@@ -251,21 +251,23 @@ public class Main {
                         System.out.println("2- Liste des courses");
                         System.out.println("3- Performances du restaurant");
                         System.out.println("4- Stocks");
-                        System.out.println("5- Retour aux écrans principaux");
+                        System.out.println("5- Ajouter un employé");
+                        System.out.println("6- Supprimer un employé");
+                        System.out.println("7- Retour aux écrans principaux");
                         int choixEcranManager = scanner2.nextInt();
                         System.out.println("Vous avez choisi l'écran: " + choixEcranManager);
 
                         switch (choixEcranManager) {
                             case 1:
-                                //Manager.gererEquipe(List<Employe> employes);// afficher la liste des employés de la journée
+                                // afficher la liste des employés de la journée
                             	restaurant.afficherInfosTravailleurs();
                                 break;
                             case 2:
-                                //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses
+                                // afficher la liste des courses
                             	managerChef.afficherMapCourses(managerChef.listeDesCourses(stock.stock));
                                 break;
                             case 3:
-                                //Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
+                                // afficher le nombre de commandes et l'argent gagné de la journée
                             	System.out.println("Nombre de transactions du jour :"+ managerChef.recetteDuJour.size());
                             	managerChef.calculArgent();
                             	System.out.println("Total d'argent gagné aujourd'hui " + managerChef.argentGagne);
@@ -276,6 +278,54 @@ public class Main {
                             	stock.afficherMapStock();
                                 break;
                             case 5:
+                            	Scanner scanner10 = new Scanner(System.in);
+                               	System.out.println("Quel type d'employé souhaitez-vous ajouter ?");
+                                System.out.println("1- Manager");
+                                System.out.println("2- Serveur");
+                                System.out.println("3- Barman");
+                                System.out.println("4- Cuisinier");
+                                int addEmploye = scanner10.nextInt();
+
+                                String nomEmploye, prenomEmploye;
+                                double salaireEmploye;
+                                
+                                System.out.println("Entrez le nom de l'employé :");
+                                nomEmploye = scanner10.next();
+                                System.out.println("Entrez le prénom de l'employé :");
+                                prenomEmploye = scanner10.next();
+                                System.out.println("Entrez le salaire de l'employé :");
+                                salaireEmploye = scanner10.nextDouble();
+
+                                switch (addEmploye) {
+                                    case 1:
+                                    	// Ajouter un manager
+                                    	Manager nouveauManager = new Manager(nomEmploye, prenomEmploye, salaireEmploye,0);
+                                        restaurant.ajouterEmploye(nouveauManager);
+                                    	break;
+                                    case 2:
+                                    	// Ajouter un serveur
+                                    	Manager nouveauServeur= new Manager(nomEmploye, prenomEmploye, salaireEmploye,0);
+                                        restaurant.ajouterEmploye(nouveauServeur);
+                                    	break;
+                                    case 3:
+                                    	// Ajouter un barman
+                                    	Manager nouveauBarman= new Manager(nomEmploye, prenomEmploye, salaireEmploye,0);
+                                        restaurant.ajouterEmploye(nouveauBarman);
+                                        break;
+                                    case 4:
+                                    	// Ajouter un cuisinier
+                                    	Manager nouveauCuisinier= new Manager(nomEmploye, prenomEmploye, salaireEmploye,0);
+                                        restaurant.ajouterEmploye(nouveauCuisinier);
+                                        break;
+                                }
+                            	break;
+                            case 6:
+                            	Scanner scanner11 = new Scanner(System.in);
+                            	System.out.println("Entrez le nom de l'employé à supprimer :");
+                            	nomEmploye = scanner11.next();
+                            	System.out.println("Employé supprimé");
+                            	break;
+                            case 7:
                                 // Retour aux écrans principaux
                                 break;
                             default:
@@ -295,7 +345,7 @@ public class Main {
 		                if (choixFermeture == 1) {
 		                    restaurant.nettoyer(); // Nettoyage
 		                    // Faire les courses
-		                    // stock.effectuerCourses();
+		                    Facture.genererListeCourses(managerChef.listeDesCourses(stock.stock));
 		                    restaurant.fermer(); // Fermeture
 		                    programmeFerme = true;
 		                    restaurantOuvert = false;
@@ -309,7 +359,7 @@ public class Main {
 		                    break;
 		                } else {
 		                    System.out.println("Choix invalide. Fermeture du programme.");
-		                    break; // Sortir de la boucle interne aussi
+		                    break;
 		                } 
         		}
         	}
