@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
     	boolean programmeFerme = false; //Cycle de journée
     	
     	// Initialisation du restaurant
@@ -17,6 +17,7 @@ public class Main {
         Cuisinier cuisinierChef = new Cuisinier ("Cuisinier", "Enchef", 2000, 0);
         Barman barmanChef = new Barman ("Barman", "Enchef", 2000,0);
         Manager manager = restaurant.chercherManager();
+        
         while (!programmeFerme) {
         	restaurant.ouvrir(manager,stock);// Ouvre le restaurant, affiche les employés du jour et reconstitue les stocks
 
@@ -143,7 +144,7 @@ public class Main {
 		
 		                switch (choixFermeture) {
 		                    case 1:
-		                    	//restaurant.nettoyer(); //Nettoyage
+		                    	restaurant.nettoyer(); //Nettoyage
 		                        
 		                        // Faire les courses mais JSP quelle fonction j'appelle
 		                        //stock.effectuerCourses();
@@ -152,7 +153,7 @@ public class Main {
 		                        programmeFerme = true;
 		                        break;
 		                    case 2:
-		                    	//restaurant.nettoyer(); //Nettoyage
+		                    	restaurant.nettoyer(); //Nettoyage
 		                        
 		                        // Faire les courses mais JSP quelle fonction j'appelle
 		                        //stock.effectuerCourses();
@@ -174,4 +175,3 @@ public class Main {
         }
     }
 }
-        
