@@ -47,7 +47,7 @@ public class Main {
                 		Scanner scannerClient = new Scanner(System.in);
                     	System.out.println("Bonjour ! Combien êtes-vous ? Nous pouvons accueillir entre 1 et 10 personnes !");
                     	int nbClient = scannerClient.nextInt();
-                    	while(nbClient<=1 || nbClient >=10) {
+                    	while(nbClient<1 || nbClient >10) {
                     		System.out.println("Donnez un nombre correct s'il vous plaît ");
                     		nbClient = scannerClient.nextInt();
                     	}
@@ -253,16 +253,23 @@ public class Main {
                         switch (choixEcranManager) {
                             case 1:
                                 //Manager.gererEquipe(List<Employe> employes);// afficher la liste des employés de la journée
+                            	restaurant.afficherInfosTravailleurs();
                                 break;
                             case 2:
                                 //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses à la fin de la journée
+                            	managerChef.afficherMapCourses(managerChef.listeDesCourses(stock.stock));
+                            	Facture.genererListeCourses(managerChef.listeDesCourses(stock.stock));
                                 break;
                             case 3:
                                 //Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
+                            	System.out.println("Nombre de transactions du jour :"+ managerChef.recetteDuJour.size());
+                            	managerChef.calculArgent();
+                            	System.out.println("Total d'argent gagné aujourd'hui " + managerChef.argentGagne);
+                            	Facture.genererRecetteDuJour(managerChef.recetteDuJour);
                                 break;
                             case 4:
                                 // Afficher la liste des stocks;
-                            	// JSP quoi mettre
+                            	stock.afficherMapStock();
                                 break;
                             case 5:
                                 // Retour aux écrans principaux

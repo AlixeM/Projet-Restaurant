@@ -24,6 +24,6 @@ public class Ingredient {
 
     // Méthode statique pour obtenir le prix d'un ingrédient
     public static double getPrix(Ingredients ingredient) {
-        return prixIngredients.getOrDefault(ingredient, 0.0);
+        return prixIngredients.getOrDefault(ingredient, 5.0);
     }
 }

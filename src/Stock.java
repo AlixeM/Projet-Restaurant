@@ -104,4 +104,17 @@ public class Stock {
 
         return platsDisponibles;
     }
+    public void afficherMapStock() {
+        System.out.println("Ingrédients en stock :");
+
+        for (Map.Entry<Ingredients, Integer> entry : stock.entrySet()) {
+            Ingredients ingredient = entry.getKey();
+            int quantite = entry.getValue();
+
+            System.out.println(ingredient + " : " + quantite);
+        }
+    }
 }
+
+
+

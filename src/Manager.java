@@ -3,10 +3,22 @@ import java.util.*;
 public class Manager extends Employe {
 	
 	List <Transaction> recetteDuJour = new ArrayList<>();
+	int argentGagne = 0;
 	
 	public Manager(String nom, String prenom, double salaire, int soirDeSuite) {
-        super(nom,prenom,salaire,soirDeSuite);
+        super(nom,prenom,salaire,soirDeSuite);   
     }
+	
+	public void calculArgent() {
+		if (recetteDuJour.isEmpty()) {
+			argentGagne=0;
+		}else {
+			for (Transaction transaction : recetteDuJour) {
+				argentGagne+=transaction.prix;
+			}
+		}
+		
+	}
 	
 	public List<Employe> gererEquipe(List<Employe> employes) {
         List<Employe> equipeGeree = new ArrayList<>();
@@ -54,5 +66,16 @@ public class Manager extends Employe {
         }
 
         return listeDesCourses;
+    }
+	
+	public void afficherMapCourses(Map<Ingredients, Integer> map) {
+        System.out.println("Liste des courses à faire :");
+
+        for (Map.Entry<Ingredients, Integer> entry : map.entrySet()) {
+            Ingredients ingredient = entry.getKey();
+            int quantite = entry.getValue();
+
+            System.out.println(ingredient + " : " + quantite);
+        }
     }
 }

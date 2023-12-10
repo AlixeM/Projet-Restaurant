@@ -25,8 +25,12 @@ public class Transaction {
         return prix;
     }
 
-    public List<Plat> getPlats() {
-        return plats;
+    public List<String> getPlats() {
+    	List <String> noms = new ArrayList<>();
+    	for (Plat plat : plats) {
+    		noms.add(plat.nom);
+    	}
+        return noms;
     }
 	
 	public void ajouterPlat(Plat plat) {
