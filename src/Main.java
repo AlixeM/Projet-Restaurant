@@ -98,6 +98,10 @@ public class Main {
                                 System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
                             }
                     	}
+                    	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
+                        if (cuisinierChef.enPrepa==false && cuisinierChef.platCommandes.isEmpty() && barmanChef.enPrepa==false && barmanChef.boissonCommandes.isEmpty()) {
+                        	System.out.println("Voici vos repas ! Puis-je");
+                        }
                 	}
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
                     if (!cuisinierChef.enPrepa && cuisinierChef.platCommandes.isEmpty() && !barmanChef.enPrepa && barmanChef.boissonCommandes.isEmpty()) {
@@ -288,37 +292,26 @@ public class Main {
 		                System.out.println("2- Démarrer une nouvelle journée");
 		                int choixFermeture = scanner3.nextInt();
 		
-		                switch (choixFermeture) {
-		                    case 1:
-		                    	restaurant.nettoyer(); //Nettoyage
-		                        
-		                        // Faire les courses mais JSP quelle fonction j'appelle
-		                        //stock.effectuerCourses();
-		                    	
-		                        restaurant.fermer(); // Fermeture
-		                        programmeFerme = true;
-		                        break;
-		                    case 2:
-		                    	restaurant.nettoyer(); //Nettoyage
-		                        
-		                        // Faire les courses mais JSP quelle fonction j'appelle
-		                        //stock.effectuerCourses();
-		                    	
-		                        restaurant.fermer();
-		                        restaurantOuvert = false;
-		                        break;
-		                    default:
-		                        System.out.println("Choix invalide. Fermeture du programme.");
-		                        programmeFerme = true;
-		                        break;
-		                }
-		                break;
-		
-		            default:
-		                System.out.println("Choix d'écran invalide");
-		        }
-            	break;
-            }
+		                if (choixFermeture == 1) {
+		                    restaurant.nettoyer(); // Nettoyage
+		                    // Faire les courses
+		                    // stock.effectuerCourses();
+		                    restaurant.fermer(); // Fermeture
+		                    programmeFerme = true;
+		                    break;
+		                } else if (choixFermeture == 2) {
+		                    restaurant.nettoyer(); // Nettoyage
+		                    // Faire les courses
+		                    // stock.effectuerCourses();
+		                    restaurant.fermer();
+		                    restaurantOuvert = false;
+		                    break;
+		                } else {
+		                    System.out.println("Choix invalide. Fermeture du programme.");
+		                    break; // Sortir de la boucle interne aussi
+		                } 
+        		}
+        	}
         }
     }
 }
