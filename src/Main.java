@@ -8,8 +8,7 @@ public class Main {
     	// Initialisation du restaurant
         Restaurant restaurant = new Restaurant(); 
         Stock stock = new Stock();
-        Menu menuDuJour = new Menu();
-        //Initialisation des plats du menu 
+        Menu menuDuJour = new Menu();//Initialisation des plats du menu 
         
         // création des employés qui gèrent les écrans (ne sont pas comptés dans l'équipe de travailleurs)
         Serveur serveurChef = new Serveur ("Serveur", "Enchef", 2000,0);
@@ -25,6 +24,7 @@ public class Main {
         boolean restaurantOuvert = true;
         int nbTransactionsTerminees = 0;
         boolean tableOccupee = false;
+        
         while (restaurantOuvert) {
         	boolean retour = false;
             // Affichage des écrans
@@ -41,7 +41,6 @@ public class Main {
             switch (choixEcran) {
                 case 1:
                     // Ecran Serveur
-                	
                 	//On associe une table aux clients si on ne s'occupe pas encore d'une table
                 	if (!tableOccupee) {
                 		Scanner scannerClient = new Scanner(System.in);
@@ -298,6 +297,7 @@ public class Main {
 		                    // stock.effectuerCourses();
 		                    restaurant.fermer(); // Fermeture
 		                    programmeFerme = true;
+		                    restaurantOuvert = false;
 		                    break;
 		                } else if (choixFermeture == 2) {
 		                    restaurant.nettoyer(); // Nettoyage
