@@ -6,7 +6,7 @@ public class Main {
     	boolean programmeFerme = false; //Cycle de journée
     	
     	// Initialisation du restaurant
-        Restaurant restaurant = new Restaurant(); 
+        Restaurant restaurant = new Restaurant();
         Stock stock = new Stock();
         Menu menuDuJour = new Menu();//Initialisation des plats du menu 
         
@@ -18,8 +18,10 @@ public class Main {
         Manager manager = restaurant.chercherManager();
         
         while (!programmeFerme) {
-        	restaurant.ouvrir(manager,stock);// Ouvre le restaurant, affiche les employés du jour et reconstitue les stocks
-
+        	if (!restaurant.ouvrir(manager,stock)){
+        		restaurant.ouvrir(manager, stock);
+        	};// Ouvre le restaurant, affiche les employés du jour et reconstitue les stocks
+        	
         // Transaction jusqu'à fermeture
         boolean restaurantOuvert = true;
         int nbTransactionsTerminees = 0;
@@ -259,9 +261,8 @@ public class Main {
                             	restaurant.afficherInfosTravailleurs();
                                 break;
                             case 2:
-                                //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses à la fin de la journée
+                                //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses
                             	managerChef.afficherMapCourses(managerChef.listeDesCourses(stock.stock));
-                            	Facture.genererListeCourses(managerChef.listeDesCourses(stock.stock));
                                 break;
                             case 3:
                                 //Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
@@ -302,7 +303,7 @@ public class Main {
 		                } else if (choixFermeture == 2) {
 		                    restaurant.nettoyer(); // Nettoyage
 		                    // Faire les courses
-		                    // stock.effectuerCourses();
+		                    Facture.genererListeCourses(managerChef.listeDesCourses(stock.stock));
 		                    restaurant.fermer();
 		                    restaurantOuvert = false;
 		                    break;

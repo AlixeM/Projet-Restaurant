@@ -83,16 +83,20 @@ public class Restaurant {
     }
     
     // Vérifie si une équipe est dispo et reconstitue le stock
-    public void ouvrir(Manager manager, Stock stock) {
+    public boolean ouvrir(Manager manager, Stock stock) {
     	stock.remplirStock();
     	travailleurs=manager.gererEquipe(employes);
     	if (travailleurs.isEmpty()) {
-    		System.out.println("Equipe pas assez nombreuse pour ouvrir");
-    		return;
+    		System.out.println("Equipe pas assez nombreuse pour ouvrir, jour de repos forcé pour tout le monde");
+    		for (Employe employe : employes) {
+    			employe.soirDeSuite=0;
+    		}
+    		return false;
     	}
     	this.ouverture=true;
     	afficherInfosTravailleurs();
     	System.out.println("Encore une belle journée qui commence !");
+    	return true;
     }
 
     public void fermer() {
