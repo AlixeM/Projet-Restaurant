@@ -1,9 +1,9 @@
-import java.util.List;
+import java.util.*;
 
 public class Restaurant {
-    List<Employe> employes;
-    List<Employe> travailleurs;
-    List <Table> tables;
+    List<Employe> employes = new ArrayList<>();
+    List<Employe> travailleurs = new ArrayList<>();
+    List <Table> tables = new ArrayList<>();
     boolean ouverture = false;
     public Restaurant() {
         // création des employés
@@ -54,6 +54,7 @@ public class Restaurant {
     }
    
     public void afficherInfosTravailleurs() {
+    	System.out.println("Travailleurs du jour : ");
         for (Employe employe : travailleurs) {
             System.out.println("Nom: " + employe.nom + ", Prénom: " + employe.prenom);
         }
@@ -113,7 +114,7 @@ public class Restaurant {
         		return null;
         	}
             if (table.nbPersonnesMax == nbPersonnes) {
-            	System.out.println("Je vous conduis à la table numéro" + table.numero);
+            	System.out.println("Je vous conduis à la table numéro " + table.numero);
                 return table;
             }
         }

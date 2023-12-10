@@ -10,7 +10,8 @@ public class Serveur extends Employe {
     	System.out.println("Plats disponibles :");
     	int i = 1;
     	for (Plat plat : platsDispo) {
-    		System.out.println(i + "-" + plat.nom);
+    		System.out.println((platsDispo.indexOf(plat)+1) + "-" + plat.nom);
+    		i+=1;
     	}
     	System.out.println("-------------");
     }

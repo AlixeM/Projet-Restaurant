@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Manager extends Employe {
 	
-	List <Transaction> recetteDuJour;
+	List <Transaction> recetteDuJour = new ArrayList<>();
 	
 	public Manager(String nom, String prenom, double salaire, int soirDeSuite) {
         super(nom,prenom,salaire,soirDeSuite);   
@@ -23,7 +23,7 @@ public class Manager extends Employe {
             } else if (employe instanceof Barman && employe.soirDeSuite < 2 && barmanCount < 1) {
                 equipeGeree.add(employe);
                 barmanCount++;
-            }  else if (employe instanceof Serveur && employe.soirDeSuite < 2 && serveurCount < 1) {
+            }  else if (employe instanceof Serveur && employe.soirDeSuite < 2 && serveurCount < 2) {
                 equipeGeree.add(employe);
                 serveurCount++;
             }

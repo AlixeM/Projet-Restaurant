@@ -1,6 +1,6 @@
 import java.util.*;
 public class Menu {
-	List <Plat> menu;
+	List <Plat> menu = new ArrayList<>();
 	
 	public Menu() {
 		Plat saladeDeluxe = new Plat(9,"Salade Deluxe",Arrays.asList(Ingredients.TOMATE,Ingredients.SALADE));

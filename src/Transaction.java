@@ -4,7 +4,14 @@ public class Transaction {
 	int id;
 	Table table;
 	double prix;
-	List <Plat> plats;
+	List <Plat> plats = new ArrayList<>();
+	
+	public Transaction(int id, Table table) {
+		this.id=id;
+		this.table=table;
+		this.prix=0;
+		this.plats= new ArrayList <>();
+	}
 	
 	public int getId() {
         return id;

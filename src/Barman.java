@@ -1,8 +1,8 @@
-import java.util.List;
+import java.util.*;
 
 public class Barman extends Employe {
 	int soirDeSuite;
-	List<Plat> boissonCommandes;
+	List<Plat> boissonCommandes = new ArrayList<>();
 	boolean enPrepa = false;
 	
 	public Barman(String nom, String prenom, double salaire, int soirDeSuite) {
