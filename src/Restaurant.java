@@ -96,9 +96,13 @@ public class Restaurant {
     }
 
     public void fermer() {
-    	this.ouverture=false;
-    	System.out.println("Ciao li pepperoni e la spaghetti mamaaaaaaa");
+        this.ouverture = false;
+        for (Employe employe : travailleurs) {
+            employe.soirDeSuite++;
+        }
+        System.out.println("Ciao li pepperoni e la spaghetti mamaaaaaaa");
     }
+
     
     public void nettoyer() throws InterruptedException {
         System.out.println("Nettoyage en cours...");

@@ -2,12 +2,14 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+    	boolean programmeFerme = false; //Cycle de journée
+    	
     	// Initialisation du restaurant
         Restaurant restaurant = new Restaurant(); 
         Stock stock = new Stock();
         Menu menuDuJour = new Menu();
-      //Initialisation des plats du menu 
+        //Initialisation des plats du menu 
         
         // création des employés qui gèrent les écrans (ne sont pas comptés dans l'équipe de travailleurs)
         Serveur serveurChef = new Serveur ("Serveur", "Enchef", 2000,0);
@@ -15,7 +17,9 @@ public class Main {
         Cuisinier cuisinierChef = new Cuisinier ("Cuisinier", "Enchef", 2000, 0);
         Barman barmanChef = new Barman ("Barman", "Enchef", 2000,0);
         Manager manager = restaurant.chercherManager();
-        restaurant.ouvrir(manager,stock);// Ouvre le restaurant, affiche les employés du jour et reconstitue les stocks
+        
+        while (!programmeFerme) {
+        	restaurant.ouvrir(manager,stock);// Ouvre le restaurant, affiche les employés du jour et reconstitue les stocks
 
         // Transaction jusqu'à fermeture
         boolean restaurantOuvert = true;
@@ -93,6 +97,10 @@ public class Main {
                             } else {
                                 System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
                             }
+                    	}
+                    	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
+                        if (cuisinierChef.enPrepa==false && cuisinierChef.platCommandes.isEmpty() && barmanChef.enPrepa==false && barmanChef.boissonCommandes.isEmpty()) {
+                        	System.out.println("Voici vos repas ! Puis-je");
                         }
                 	}
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
@@ -232,54 +240,78 @@ public class Main {
                 	}
                     break;
 
-                /*case 4:
-                    // Ecran Manager
-                    Scanner scanner2 = new Scanner(System.in);
-                    System.out.println("Que souhaitez-vous faire ?");
-                    System.out.println("1- Liste des Employés de la journée");
-                    System.out.println("2- Liste des courses");
-                    System.out.println("3- Performances du restaurant");
-                    System.out.println("4- Stocks");
-                    System.out.println("5- Retour aux écrans principaux");
-                    int choixEcranManager = scanner2.nextInt();
-                    System.out.println("Vous avez choisi l'écran: " + choixEcranManager);
+                    case 4:
+                        // Ecran Manager
+                        Scanner scanner2 = new Scanner(System.in);
+                        System.out.println("Que souhaitez-vous faire ?");
+                        System.out.println("1- Liste des Employés de la journée");
+                        System.out.println("2- Liste des courses");
+                        System.out.println("3- Performances du restaurant");
+                        System.out.println("4- Stocks");
+                        System.out.println("5- Retour aux écrans principaux");
+                        int choixEcranManager = scanner2.nextInt();
+                        System.out.println("Vous avez choisi l'écran: " + choixEcranManager);
 
-                    switch (choixEcranManager) {
-                        case 1:
-                            //Manager.gererEquipe(List<Employe> employes);// afficher la liste des employés de la journée
-                            break;
-                        case 2:
-                            //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses à la fin de la journée
-                            break;
-                        case 3:
-                            //Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
-                            break;
-                        case 4:
-                            // Afficher la liste des stocks;
-                        	// JSP quoi mettre
-                            break;
-                        case 5:
-                            // Retour aux écrans principaux
-                            break;
-                        default:
-                            System.out.println("Choix d'écran invalide");
-                            break;
-                    }
-                    break;
+                        switch (choixEcranManager) {
+                            case 1:
+                                //Manager.gererEquipe(List<Employe> employes);// afficher la liste des employés de la journée
+                                break;
+                            case 2:
+                                //Manager.listeDesCourses(Map<Ingredients, Integer> stock);// afficher la liste des courses à la fin de la journée
+                                break;
+                            case 3:
+                                //Manager.performancesJournee();// afficher le nombre de commandes et l'argent gagné de la journée
+                                break;
+                            case 4:
+                                // Afficher la liste des stocks;
+                            	// JSP quoi mettre
+                                break;
+                            case 5:
+                                // Retour aux écrans principaux
+                                break;
+                            default:
+                                System.out.println("Choix d'écran invalide");
+                                break;
+                        }
+                        break;
 
-                case 5:
-                    //restaurant.nettoyer(); //Nettoyage
-                    
-                    // Faire les courses mais JSP quelle fonction j'appelle
-                    //stock.effectuerCourses();
-
-                    restaurant.fermer(); //Fermeture
-                    restaurantOuvert = false;
-                    break;
-                    
-
-                default:
-                    System.out.println("Choix d'écran invalide");*/
+                    case 5:
+                    	// Demander à l'utilisateur s'il veut fermer le programme ou démarrer une nouvelle journée
+		                Scanner scanner3 = new Scanner(System.in);
+		                System.out.println("Que souhaitez-vous faire ?");
+		                System.out.println("1- Fermer le programme");
+		                System.out.println("2- Démarrer une nouvelle journée");
+		                int choixFermeture = scanner3.nextInt();
+		
+		                switch (choixFermeture) {
+		                    case 1:
+		                    	restaurant.nettoyer(); //Nettoyage
+		                        
+		                        // Faire les courses mais JSP quelle fonction j'appelle
+		                        //stock.effectuerCourses();
+		                    	
+		                        restaurant.fermer(); // Fermeture
+		                        programmeFerme = true;
+		                        break;
+		                    case 2:
+		                    	restaurant.nettoyer(); //Nettoyage
+		                        
+		                        // Faire les courses mais JSP quelle fonction j'appelle
+		                        //stock.effectuerCourses();
+		                    	
+		                        restaurant.fermer();
+		                        restaurantOuvert = false;
+		                        break;
+		                    default:
+		                        System.out.println("Choix invalide. Fermeture du programme.");
+		                        programmeFerme = true;
+		                        break;
+		                }
+		                break;
+		
+		            default:
+		                System.out.println("Choix d'écran invalide");
+		        }
             }
         }
     }
