@@ -15,13 +15,13 @@ public class Table {
             return; // Annule la création de l'instance de Table
         }
 
-        if (nbPersonnes > nbPersonnesMax) {
+        /*if (nbPersonnes > nbPersonnesMax) {
             // Si le nombre de personnes dépasse le max
             System.out.println("Erreur : Le nombre de personnes dépasse la capacité maximale de la table.");
             return; // Annule la création de l'instance 
-        }
+        }*/
 
         // Si tout est bon, initialise le nb de personnes
-        this.nbPersonnes = nbPersonnes;
+        this.nbPersonnes = 0;
     }
 }

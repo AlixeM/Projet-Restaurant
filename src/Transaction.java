@@ -3,7 +3,7 @@ import java.util.*;
 public class Transaction {
 	int id;
 	Table table;
-	double prix;
+	int prix;
 	List <Plat> plats = new ArrayList<>();
 	
 	public Transaction(int id, Table table) {
@@ -21,7 +21,7 @@ public class Transaction {
         return table;
     }
 
-    public double getPrix() {
+    public int getPrix() {
         return prix;
     }
 
@@ -50,37 +50,38 @@ public class Transaction {
 		int prixPaye=0;
 		int personnesAyantPaye=1;
 		List<Integer> paiements = new ArrayList<>();
-		
+		int paye=0;
+		int prixRestant=prix-prixPaye;
 		while(prixPaye<prix || personnesAyantPaye<table.nbPersonnes) {
-			Scanner scanner = new Scanner(System.in);
-			int prixRestant=prix-prixPaye;
-			System.out.println("Table n° "+ table.numero + "Prix restant à payer : " + prixRestant);
-			System.out.println("Client n° " +personnesAyantPaye +", combien voulez-vous payer ?");
-			int paye = scanner.nextInt();
-			
-			if (paye<=prixRestant && paye>=0) {
-				System.out.println("Vous avez bien payé "+paye+" euros.");
-				prixRestant=-paye;
-				prixPaye=+paye;
-				personnesAyantPaye++;
-				paiements.add(paye);
-			}
-			else{
-				System.out.println("Il y a une erreur avec le montant. Veuillez réessayer.");
-			}
-			
-			if(prixPaye<prix || personnesAyantPaye==table.nbPersonnes) {
-				System.out.println("Table n° "+ table.numero +"Client n° " +personnesAyantPaye +", il vous reste "+ prixRestant+ "euros à payer.");
+			if(prixPaye<prix && personnesAyantPaye==table.nbPersonnes) {
+				System.out.println("Table n° "+ table.numero +" Client n° " +personnesAyantPaye +", il vous reste "+ prixRestant+ "euros à payer.");
 				paye=prixRestant;
 				System.out.println("Vous avez bien payé "+paye+" euros.");
-				prixRestant=-paye;
-				prixPaye=+paye;
+				prixRestant-=paye;
+				prixPaye+=paye;
 				personnesAyantPaye++;
 				paiements.add(paye);
 			}
-			scanner.close();
-		}
-		
+			else {
+				Scanner scanner = new Scanner(System.in);
+				prixRestant=prix-prixPaye;
+				System.out.println("Table n° "+ table.numero + " Prix restant à payer : " + prixRestant);
+				System.out.println(" Client n° " +personnesAyantPaye +", combien voulez-vous payer ?");
+				paye = scanner.nextInt();
+				
+				if (paye<=prixRestant && paye>=0) {
+					System.out.println("Vous avez bien payé "+paye+" euros.");
+					prixRestant-=paye;
+					prixPaye+=paye;
+					personnesAyantPaye++;
+					paiements.add(paye);
+				}
+				else{
+					System.out.println("Il y a une erreur avec le montant. Veuillez réessayer.");
+				}
+			}
+			
+			}
 		return paiements;
 	}
 	

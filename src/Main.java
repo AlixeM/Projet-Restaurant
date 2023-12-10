@@ -19,9 +19,10 @@ public class Main {
 
         // Transaction jusqu'à fermeture
         boolean restaurantOuvert = true;
-        int nbTransactions = 0;
+        int nbTransactionsTerminees = 0;
         boolean tableOccupee = false;
         while (restaurantOuvert) {
+        	boolean retour = false;
             // Affichage des écrans
             Scanner scanner = new Scanner(System.in);
             System.out.println("Que souhaitez vous faire ?");
@@ -47,8 +48,10 @@ public class Main {
                     		nbClient = scannerClient.nextInt();
                     	}
                     	Table table = restaurant.assignerTable(nbClient);
+                    	table.nbPersonnes=nbClient;
                     	// On associe une transaction à cette commande
-                    	Transaction transaction = new Transaction(nbTransactions +1,table);
+                    	Transaction transaction = new Transaction(nbTransactionsTerminees +1,table);
+                    	managerChef.recetteDuJour.add(transaction);
                     	tableOccupee = true;
                     	boolean tableTerminee = false;
                     	while (!tableTerminee) {
@@ -58,18 +61,32 @@ public class Main {
                         	
                         	// demande de commande au client
                             System.out.println("Voulez-vous ajouter un plat ? (Oui/Non)");
-                            String reponse = scanner.next();
+                            Scanner scannerPlat = new Scanner(System.in);
+                            String reponse = scannerPlat.next();
 
                             if (reponse.equalsIgnoreCase("Oui")) {
                                 // Demander au client de choisir un plat
                             	Scanner scanner1 = new Scanner(System.in);
                                 System.out.println("Quel plat souhaitez-vous ?");
                                 int choixEcranServeur = scanner1.nextInt();
+                                //on vérifie que le numéro du plat est bien sur le menu
+                                while(choixEcranServeur <1 || choixEcranServeur > platsDispos.size()) {
+                                	System.out.println("Ce numéro n'est pas dans le menu");
+                                	choixEcranServeur = scanner1.nextInt();
+                                }
                                 Plat platChoisi = platsDispos.get(choixEcranServeur-1);
                                 stock.retirerStock(platChoisi);
-                                System.out.println("Vous avez choisi le plat : " + platChoisi.nom);
+                                //si c'est un plat on envoie la commande en cuisine
+                                if (choixEcranServeur <12) {
+                                	System.out.println("Vous avez choisi le plat : " + platChoisi.nom);
+                                    cuisinierChef.ajouterPlat(platChoisi);
+                                }
+                                //si c'est une boisson on envoie au bar
+                                else if(choixEcranServeur >= 12) {
+                                	System.out.println("Vous avez choisi la boisson " + platChoisi.nom);
+                                	barmanChef.ajouterBoisson(platChoisi);
+                                }
                                 transaction.ajouterPlat(platChoisi);
-                                cuisinierChef.ajouterPlat(platChoisi);
                             } else if (reponse.equalsIgnoreCase("Non")) {
                                 tableTerminee = true;
                                 System.out.println("La table a terminé de commander. Votre commande arrive sous peu.");
@@ -79,23 +96,143 @@ public class Main {
                         }
                 	}
                 	//si on s'occupe déjà une table, on vérifie si la commande est arrivée
-                    if (cuisinierChef.enPrepa==false && cuisinierChef.platCommandes.isEmpty() && barmanChef.enPrepa==false && barmanChef.boissonCommandes.isEmpty()) {
-                    	System.out.println("Voici vos repas ! Puis-je");
-                    }
+                    if (!cuisinierChef.enPrepa && cuisinierChef.platCommandes.isEmpty() && !barmanChef.enPrepa && barmanChef.boissonCommandes.isEmpty()) {
+                    		System.out.println("Voici votre commande !");
+                    		//mettre un temps d'attente si alixe y arrive
+                    		System.out.println("Avez-vous fini ? Oui/Non");
+                        	Scanner scannerCommande= new Scanner (System.in);
+                  			 String reponse = scannerCommande.next();                  			 
+                              if (reponse.equalsIgnoreCase("Non")) {
+                              	System.out.println("Pas de souci je reviendrai plus tard");
+                              }
+                              else if (reponse.equalsIgnoreCase("Oui")) {
+                    				System.out.println("Très bien, nous pouvons passer à l'addition !");
+                    				Transaction transactionPaiement =managerChef.recetteDuJour.get(nbTransactionsTerminees);
+                    				transactionPaiement.calculerPrix(transactionPaiement.plats);
+                    				List <Integer> paiements =transactionPaiement.payer(transactionPaiement.table, transactionPaiement.prix);
+                    				nbTransactionsTerminees++;
+                    				tableOccupee=false;
+                                }
+                              else {
+                                  System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                              }
+                    	}else{
+                    		System.out.println("Votre commande est encore en préparation");
+                    	}
+
                     
                     break;
 
-                /*case 2:
+                case 2:
                     // Ecran cuisine
-                    //Cuisinier.cuisiner();
+                	while (!retour) {
+                		if (!cuisinierChef.enPrepa) {
+                    		if (cuisinierChef.platCommandes.isEmpty()) {
+                    			System.out.println("Rien à signaler ! Quitter l'écran ? Oui/Non");
+                    			Scanner scannerRetour = new Scanner (System.in);
+                    			 String reponse = scannerRetour.next();
+                    			if (reponse.equalsIgnoreCase("Oui")) {
+                    				System.out.println("Retour à l'écran principal");
+                                	retour=true;
+                                }
+                                else if (reponse.equalsIgnoreCase("Non")) {
+                                	System.out.println("Très bien, on reste sur l'écran Cuisine");
+                                }
+                                else {
+                                    System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                                }
+                    		}
+                    		else {
+                                System.out.println("Bonjour chef ! Voici ce qui attend d'être préparé :");
+                                cuisinierChef.afficherListe();
+                                System.out.println("Commencer à préparer les plats ? Oui/Non");
+                                Scanner scannerCuisine = new Scanner (System.in);
+                                String reponse = scannerCuisine.next();
+                                if (reponse.equalsIgnoreCase("Oui")) {
+                                	cuisinierChef.preparer();
+                                	retour=true;
+                                }
+                                else if (reponse.equalsIgnoreCase("Non")) {
+                                	System.out.println("Pas de souci, quand tu veux chef");
+                                }
+                                else {
+                                    System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                                }
+                            }
+                    	}
+                		else {
+                			System.out.println("Les plats sont-ils prêts ? Oui/Non");
+                			Scanner scannerPret = new Scanner (System.in);
+                            String reponse = scannerPret.next();
+                            if (reponse.equalsIgnoreCase("Oui")) {
+                            	cuisinierChef.ready();
+                            	retour=true;
+                            }
+                            else if (reponse.equalsIgnoreCase("Non")) {
+                            	System.out.println("Okay prends ton temps");
+                            }
+                            else {
+                                System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                            }
+                		}
+                	}
                     break;
 
                 case 3:
-                    // Ecran bar
-                    //Barman.boisson();
+                	while (!retour) {
+                		if (!barmanChef.enPrepa) {
+                    		if (barmanChef.boissonCommandes.isEmpty()) {
+                    			System.out.println("Rien à signaler ! Quitter l'écran ? Oui/Non");
+                    			Scanner scannerRetour = new Scanner (System.in);
+                    			 String reponse = scannerRetour.next();
+                    			if (reponse.equalsIgnoreCase("Oui")) {
+                    				System.out.println("Retour à l'écran principal");
+                                	retour=true;
+                                }
+                                else if (reponse.equalsIgnoreCase("Non")) {
+                                	System.out.println("Très bien, on reste sur l'écran Bar");
+                                }
+                                else {
+                                    System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                                }
+                    		}
+                    		else {
+                                System.out.println("Bonjour chef ! Voici ce qui attend d'être préparé :");
+                                barmanChef.afficherListe();
+                                System.out.println("Commencer à préparer les boissons ? Oui/Non");
+                                Scanner scannerBar = new Scanner (System.in);
+                                String reponse = scannerBar.next();
+                                if (reponse.equalsIgnoreCase("Oui")) {
+                                	barmanChef.preparer();
+                                	retour=true;
+                                }
+                                else if (reponse.equalsIgnoreCase("Non")) {
+                                	System.out.println("Pas de souci, quand tu veux chef");
+                                }
+                                else {
+                                    System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                                }
+                            }
+                    	}
+                		else {
+                			System.out.println("Les boissons sont-elles prêtes ? Oui/Non");
+                			Scanner scannerPret = new Scanner (System.in);
+                            String reponse = scannerPret.next();
+                            if (reponse.equalsIgnoreCase("Oui")) {
+                            	barmanChef.ready();
+                            	retour=true;
+                            }
+                            else if (reponse.equalsIgnoreCase("Non")) {
+                            	System.out.println("Okay prends ton temps");
+                            }
+                            else {
+                                System.out.println("Veuillez répondre par 'Oui' ou 'Non'.");
+                            }
+                		}
+                	}
                     break;
 
-                case 4:
+                /*case 4:
                     // Ecran Manager
                     Scanner scanner2 = new Scanner(System.in);
                     System.out.println("Que souhaitez-vous faire ?");

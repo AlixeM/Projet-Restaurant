@@ -5,7 +5,7 @@ public class Manager extends Employe {
 	List <Transaction> recetteDuJour = new ArrayList<>();
 	
 	public Manager(String nom, String prenom, double salaire, int soirDeSuite) {
-        super(nom,prenom,salaire,soirDeSuite);   
+        super(nom,prenom,salaire,soirDeSuite);
     }
 	
 	public List<Employe> gererEquipe(List<Employe> employes) {

@@ -9,6 +9,16 @@ public class Barman extends Employe {
         super(nom,prenom,salaire,soirDeSuite);   
     }
 	
+	public void ajouterBoisson(Plat plat) {
+		boissonCommandes.add(plat);
+	}
+	
+	public void afficherListe() {
+		for (Plat plat : boissonCommandes) {
+			System.out.println(plat.nom);
+		}
+	}
+	
 	public void preparer() {
 		enPrepa = true;
 		boissonCommandes.clear();

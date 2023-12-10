@@ -13,6 +13,12 @@ public class Cuisinier extends Employe {
 		platCommandes.add(plat);
 	}
 	
+	public void afficherListe() {
+		for (Plat plat : platCommandes) {
+			System.out.println(plat.nom);
+		}
+	}
+	
 	public void preparer() {
 		enPrepa = true;
 		platCommandes.clear();
