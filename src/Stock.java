@@ -39,29 +39,24 @@ public class Stock {
             quantitesNecessaires.put(ingrédient, quantitesNecessaires.getOrDefault(ingrédient, 0) + 1);
         }
 
-        // Retirer les ingrédients du stock en tenant compte des quantités nécessaires
+        // Retirer les ingrédients du stock en tenant compte des quantités nécessaires 
         for (Map.Entry<Ingredients, Integer> entry : quantitesNecessaires.entrySet()) {
             Ingredients ingrédient = entry.getKey();
             int quantiteNecessaire = entry.getValue();
 
             // Vérifier si l'ingrédient est présent dans le stock
             if (stock.containsKey(ingrédient)) {
-                // Récupérer la quantité actuelle dans le stock
                 int quantiteActuelle = stock.get(ingrédient);
-
                 // Vérifier si la quantité est suffisante pour retirer
                 if (quantiteActuelle >= quantiteNecessaire) {
-                    // Retirer la quantité spécifiée du stock
                     stock.put(ingrédient, quantiteActuelle - quantiteNecessaire);
                 } else {
                     // Gérer le cas où la quantité est insuffisante
                     System.out.println("Erreur : Stock insuffisant pour l'ingrédient " + ingrédient);
-                    // Vous pouvez lever une exception ou prendre une autre action en conséquence
                 }
             } else {
                 // Gérer le cas où l'ingrédient n'est pas présent dans le stock
                 System.out.println("Erreur : Ingrédient " + ingrédient + " non trouvé dans le stock");
-                // Vous pouvez lever une exception ou prendre une autre action en conséquence
             }
         }
     }
@@ -96,5 +91,17 @@ public class Stock {
             }
         }
         return true;
+    }
+    
+    public List<Plat> verifDispoMenu(List <Plat> menuPrevisionnel){
+    	List<Plat> platsDisponibles = new ArrayList<>();
+
+        for (Plat plat : menuPrevisionnel) {
+            if (verifDispo(plat)) {
+                platsDisponibles.add(plat);
+            }
+        }
+
+        return platsDisponibles;
     }
 }
