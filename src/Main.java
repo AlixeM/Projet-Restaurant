@@ -238,10 +238,10 @@ public class Main {
                 	}
                     break;
 
-                    case 4:
-                        // Ecran Manager
-                        Scanner scanner2 = new Scanner(System.in);
-                        System.out.println("Que souhaitez-vous faire ?");
+                   case 4:
+                       // Ecran Manager
+                       	Scanner scanner2 = new Scanner(System.in);
+                       	System.out.println("Que souhaitez-vous faire ?");
                         System.out.println("1- Liste des Employés de la journée");
                         System.out.println("2- Liste des courses");
                         System.out.println("3- Performances du restaurant");
