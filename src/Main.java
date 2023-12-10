@@ -73,7 +73,7 @@ public class Main {
                                 System.out.println("Quel plat souhaitez-vous ?");
                                 int choixEcranServeur = scanner1.nextInt();
                                 //on vérifie que le numéro du plat est bien sur le menu
-                                while(choixEcranServeur <1 || choixEcranServeur > platsDispos.size()||!scanner1.hasNextInt()) {
+                                while(choixEcranServeur <1 || choixEcranServeur > platsDispos.size()) {
                                 	System.out.println("Ce numéro n'est pas dans le menu");
                                 	choixEcranServeur = scanner1.nextInt();
                                 }
