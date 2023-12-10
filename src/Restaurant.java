@@ -7,17 +7,17 @@ public class Restaurant {
     boolean ouverture = false;
     public Restaurant() {
         // création des employés
-        Cuisinier cuisinier = new Cuisinier ("Michel", "Francis", 2000, 0);
-        Cuisinier cuisinier2 = new Cuisinier ("Michel", "Francis", 2000, 0);
-        Cuisinier cuisinier3 = new Cuisinier ("Michel", "Francis", 2000, 0);
-        Cuisinier cuisinier4 = new Cuisinier ("Michel", "Francis", 2000, 0);
-        Cuisinier cuisinier5 = new Cuisinier ("blabla", "truc", 2000, 5);
-        Cuisinier cuisinier6 = new Cuisinier ("zozozoz", "hahahaha", 2000, 0);
-        Manager manager = new Manager ("Truc", "Bidule", 5000,0);
-        Barman barman = new Barman ("Robert", "Jean", 2000,0);
-        Barman barman2 = new Barman ("Pierre", "Jean", 2000,0);
-        Serveur serveur = new Serveur ("Stan", "Lee", 2000,0);
-        Serveur serveur2 = new Serveur ("Deez", "Nuts", 0,0);
+        Cuisinier cuisinier = new Cuisinier ("Pitou", "Anne", 2000, 0);
+        Cuisinier cuisinier2 = new Cuisinier ("Toudu", "Robert", 2000, 0);
+        Cuisinier cuisinier3 = new Cuisinier ("Rico", "Patrick", 2000, 0);
+        Cuisinier cuisinier4 = new Cuisinier ("Milas", "Francis", 2000, 0);
+        Cuisinier cuisinier5 = new Cuisinier ("Cala", "Joséphine", 2000, 5);
+        Cuisinier cuisinier6 = new Cuisinier ("Bilty", "Louise", 2000, 0);
+        Manager manager = new Manager ("Casnoix", "Jean", 5000,0);
+        Barman barman = new Barman ("Moldu", "Hubert", 2000,0);
+        Barman barman2 = new Barman ("Firatu", "Pricilla", 2000,0);
+        Serveur serveur = new Serveur ("Miratru", "Olivia", 2000,0);
+        Serveur serveur2 = new Serveur ("Rantis", "Freddy", 0,0);
         ajouterEmploye(cuisinier);
         ajouterEmploye(cuisinier2);
         ajouterEmploye(cuisinier3);
@@ -100,7 +100,7 @@ public class Restaurant {
         for (Employe employe : travailleurs) {
             employe.soirDeSuite++;
         }
-        System.out.println("Ciao li pepperoni e la spaghetti mamaaaaaaa");
+        System.out.println("Au revoir ! Merci pour cette belle journée");
     }
 
     
